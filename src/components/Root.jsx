@@ -1,19 +1,28 @@
-import React, { createContext } from 'react'
+import React, { createContext, useState } from 'react'
 import { Outlet, useLoaderData } from 'react-router';
 import Header from "./Header";
 import Footer from "./Footer";
 
 
 export const ProductContext = createContext([])
+export const CartContext = createContext([]);
+
 const Root = () => {
-    const products = useLoaderData();
+
+    const { products, initialCart } = useLoaderData();
+    console.log(initialCart)
+    const [cart, setCart] = useState(initialCart);
     return (
         <ProductContext.Provider value={products}>
-            <Header></Header>
+            <CartContext.Provider value={[cart, setCart]}>
 
-            <Outlet></Outlet>
-            <Footer></Footer>
-        </ProductContext.Provider>
+                <Header></Header>
+
+                <Outlet></Outlet>
+                <Footer></Footer>
+
+            </CartContext.Provider>
+        </ProductContext.Provider >
     )
 }
 

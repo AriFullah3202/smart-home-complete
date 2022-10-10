@@ -6,12 +6,13 @@ import ErrorPage from '../components/ErrorPage'
 import Shop from '../components/Shop'
 import Cart from '../components/Cart'
 import { createBrowserRouter } from 'react-router-dom';
+import { getCardAndProductData } from "../loader/Card&ProductData"
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root />,
         errorElement: <ErrorPage></ErrorPage>,
-        loader: () => fetch('products.json'),
+        loader: getCardAndProductData,
         children: [
             { path: '/', element: <Home /> },
             { path: '/home', element: <Home /> },

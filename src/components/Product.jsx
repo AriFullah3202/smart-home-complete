@@ -1,10 +1,8 @@
 import React from 'react'
 
-const Product = (props) => {
-  console.log(props.produc)
-  const { name, picture, price, category } = props.produc
-  console.log(name)
-  console.log(price)
+const Product = ({ product, handleAddToCart }) => {
+  const { name, picture, price, category } = product
+
   return (
     <div className='bg-gray-100 p-6 rounded shadow-lg'>
       <img
@@ -18,7 +16,7 @@ const Product = (props) => {
       <button
         type='button'
         className='px-8 block w-full mt-4 py-3 font-semibold rounded-full bg-cyan-200 text-gray-800 hover:bg-cyan-400'
-      >
+        onClick={() => handleAddToCart(product)}>
         Add To Cart
       </button>
     </div>
