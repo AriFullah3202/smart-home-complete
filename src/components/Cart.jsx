@@ -3,9 +3,21 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from './Root';
 import CartItem from './CartItem';
+import { removeFromDb } from "../utils/fakeDB"
 
 const Cart = () => {
+  // context api diya data load hocche
   const [cart, setCart] = useContext(CartContext)
+  const handleRemoveItem = (id) => {
+    console.log(id)
+    //jegolo milche eigulo amra nibo na
+    const remaining = cart.filter(product => product.id !== id);
+    console.log(remaining);
+    setCart(remaining);
+    // ei id diya localStorage theke data remove hocche
+    removeFromDb(id);
+
+  }
 
   return (
     <div className='flex min-h-screen items-start justify-center bg-gray-100 text-gray-900'>
@@ -15,7 +27,7 @@ const Cart = () => {
         </h2>
         <ul className='flex flex-col divide-y divide-gray-700'>
           {
-            cart.map(product => <CartItem product={product}></CartItem>)
+            cart.map(product => <CartItem product={product} handleRemoveItem={handleRemoveItem}></CartItem>)
           }
         </ul>
         <div className='space-y-1 text-right'>
