@@ -1,8 +1,10 @@
 import React from 'react'
 
-const Product = () => {
-  const product = {}
-  const { name, picture, price, category } = product
+const Product = (props) => {
+  console.log(props.produc)
+  const { name, picture, price, category } = props.produc
+  console.log(name)
+  console.log(price)
   return (
     <div className='bg-gray-100 p-6 rounded shadow-lg'>
       <img

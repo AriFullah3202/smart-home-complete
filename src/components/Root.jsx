@@ -8,7 +8,7 @@ export const ProductContext = createContext([])
 const Root = () => {
     const products = useLoaderData();
     return (
-        <ProductContext.Provider value={[products]}>
+        <ProductContext.Provider value={products}>
             <Header></Header>
 
             <Outlet></Outlet>
